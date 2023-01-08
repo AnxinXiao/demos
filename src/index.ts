@@ -1,5 +1,5 @@
 type Deck = NormalCard[]
-type Color = '♥' | '♠' | '♦' | '♣' | 'red King' | 'black King'
+type Color = '♥' | '♠' | '♦' | '♣' | 'red' | 'black'
 type  NormalCard = {
     color: Color,
     mark: number | 'Big King' | 'Little King'
@@ -15,7 +15,7 @@ function createDeck(): Deck {
             {mark: i, color: '♣'}
         )
     }
-    deck.push({color: 'red King', mark: 'Big King'}, {color: 'black King', mark: 'Little King'})
+    deck.push({color: 'red', mark: 'Big King'}, {color: 'black', mark: 'Little King'})
     return deck
 }
 
@@ -35,7 +35,12 @@ function printDeck(deck: Deck) {
         }else if(card.mark === 13){
             str+='K'
         }
-      result+=str+'\t';
+
+        if(!(card.color === "red" || card.color === "black")){
+            result+=str+'\t';
+        }else{
+            result+=card.mark+'\t'
+        }
         if((i+1)%4 === 0){
             result += '\n'
         }
@@ -44,7 +49,5 @@ function printDeck(deck: Deck) {
 }
 const deck = createDeck()
 printDeck(deck)
-
-
 
 
